@@ -1,0 +1,73 @@
+{% extends "p_track_app/base.html" %}
+{% load static %}
+
+{% block title %}
+    Categories
+{% endblock title %}
+
+{% block style %}
+<style>
+.account-link {
+    text-decoration: none;
+    color: #0044ff;
+}
+</style>
+{% endblock style %}
+
+{% block content %}
+
+
+<div class="category-section">
+
+    <div class="info-section">
+        
+        {% if not user.profile.is_verified %}
+        <div class="email-verify">
+            <p>{{ request.user }} Verify you email <a href="{% url 'verify-email' %}" class="account-link"> Verify Email</a></p>
+        </div>
+        {% endif %}
+        
+        <p class="main-heading">
+            Categories
+        </p>
+        <p class="main-heading-desc">
+            Create Whatever category you want and add notes inside them.
+        </p>
+        <p class="main-heading-desc">
+            Click on Category to view it.
+        </p>
+
+    </div>
+
+    <div class="field-data-container">
+        <div class="btn-container">
+            <a href="{% url 'create-category' %}" class="btn btn-update">Create New Category</a>
+        </div>
+    </div>
+    {% if categories %}
+    <ul class="field-data-container">
+        {% for category in categories %}
+        <li class="field field-container">
+            <a href="{% url 'view-category' category.id %}" class="link li-a "><b>{{forloop.counter}}. </b>{{category.category}}</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    {% else %}
+    <p class="main-heading-desc">
+        You don't have any Category yet.
+    </p>
+    <p class="main-heading-desc">
+        Create your first category and start adding your note.
+    </p>
+    {% endif %}
+
+
+</div>
+
+{% endblock content %}
+
+
+{% block script %}
+    
+{% endblock script %}

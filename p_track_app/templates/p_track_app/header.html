@@ -1,0 +1,12 @@
+<header class="header">
+    <div class="header-main">
+        <a href="{% url 'home' %}" class="link header-logo">P<sub>track</sub></a>
+        <ul>
+            {% if user.is_authenticated %}
+            <li>
+                <a href="{% url 'logout' %}" class="link">Logout</a>
+            </li>
+            {% endif %} 
+        </ul>
+    </div>
+</header>

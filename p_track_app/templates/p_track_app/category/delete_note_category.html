@@ -1,0 +1,77 @@
+{% extends "p_track_app/base.html" %}
+{% load static %}
+
+{% block title %}
+    Delete Category
+{% endblock title %}
+
+{% block style %}
+
+<style>
+/* form style */
+.form-field-input {
+    margin: 0;
+    border: black 1px solid;
+    width: calc(100% - 20px);
+}
+
+.btn-submit {
+    border: none;
+}
+
+@media only screen and (max-width: 374px){
+    .main-heading {
+        font-size: x-large !important;
+    }
+}
+
+</style>
+
+{% endblock style %}
+
+{% block content %}
+<a href="{% url 'view-category' category.id %}" class="back-arrow-container link">
+    <img src="{% static 'images/arrow.svg' %}" alt="back arrow image.">
+</a>
+
+<div class="category-section">
+
+    <div class="info-section">
+        <h1 class="main-heading">
+            Do you want to Delete this Category?
+        </h1>
+        <p class="main-heading-desc danger-text">
+            Delething this category will also delete notes associated with this category.
+        </p>
+    </div>
+
+    <div class="field-data-container">
+        <div class="field-container">
+            <p class="field-label">Category</p>
+            <div class="field">{{category.category}}</div>
+        </div>
+        <div class="field-container">
+            <p class="field-label">Description</p>
+            <pre class="field desc-text">{{category.description}}</pre>
+        </div>
+
+        <form action="" method="post" class="btn-container" id="form-id">
+        {% csrf_token %}
+        <div class="btn-container">
+            <input type="submit" class="btn btn-delete" value="Yes, Delete">
+            <a href="{% url 'view-category' category.id %}" class="btn btn-cancel">No, Cancel</a>
+        </div>
+        </form>
+
+    </div>
+</div>
+
+{% endblock content %}
+
+
+{% block script %}
+<script>
+    document.getElementById('submit-btn').submit()
+</script>
+    
+{% endblock script %}

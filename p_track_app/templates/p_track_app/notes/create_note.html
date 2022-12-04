@@ -1,0 +1,88 @@
+{% extends "p_track_app/base.html" %}
+{% load static %}
+
+{% block title %}
+    Create Note
+{% endblock title %}
+
+{% block style %}
+
+<style>
+/* form style */
+.form-field-input {
+    margin: 0;
+    border: black 1px solid;
+    width: calc(100% - 20px);
+}
+
+.btn-submit {
+    border: none;
+}
+
+@media only screen and (max-width: 374px){
+    .main-heading {
+        font-size: x-large !important;
+    }
+}
+
+</style>
+
+{% endblock style %}
+
+{% block content %}
+
+<a href="{% url 'view-category' category.id %}" class="back-arrow-container link">
+    <img src="{% static 'images/arrow.svg' %}" alt="back arrow image.">
+</a>
+
+<div class="category-section">
+
+    <div class="info-section">
+        <p class="main-heading">
+            Create Note
+        </p>
+        <p class="main-heading-desc">
+            Create a note that matches with the type of category that you have selected.
+        </p>
+    </div>
+
+    <form action="" method="post" class="field-data-container" id="form-id">
+        {% csrf_token %}
+        <div class="field-container">
+            <p class="field-label">Title</p>
+            {{form.title}}
+        </div>
+        
+        <div class="field-container">
+            <p class="field-label">Link</p>
+            {{form.link}}
+        </div>
+        
+        <div class="field-container">
+            <p class="field-label">Description</p>
+            {{form.content}}
+        </div>
+
+        <div class="btn-container">
+            <input type="submit" value="Create Note" class="btn btn-update">
+            <a href="{% url 'view-category' category.id %}" class="btn btn-cancel" >Cancel</a>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}
+
+
+{% block script %}
+
+<script>
+    let note_title_cls_lst = document.getElementById('id_title').classList
+    let note_link_cls_lst = document.getElementById('id_link').classList
+    let note_content_cls_lst = document.getElementById('id_content').classList
+
+    note_title_cls_lst.add('field', 'form-field-input');
+    note_link_cls_lst.add('field', 'form-field-input');
+    note_content_cls_lst.add('field', 'form-field-input', 'desc-text');
+</script>
+    
+{% endblock script %}

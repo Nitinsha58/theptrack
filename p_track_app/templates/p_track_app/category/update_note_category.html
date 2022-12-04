@@ -1,0 +1,69 @@
+{% extends "p_track_app/base.html" %}
+{% load static %}
+
+{% block title %}
+    Update Category
+{% endblock title %}
+
+{% block style %}
+
+<style>
+/* form style */
+.form-field-input {
+    margin: 0;
+    border: black 1px solid;
+    width: calc(100% - 20px);
+}
+
+</style>
+
+{% endblock style %}
+
+{% block content %}
+<a href="{% url 'view-category' category.id %}" class="back-arrow-container link">
+    <img src="{% static 'images/arrow.svg' %}" alt="back arrow image.">
+</a>
+
+<div class="category-section">
+
+    <div class="info-section">
+        <p class="main-heading">
+            Update Category
+        </p>
+        <p class="main-heading-desc">
+            Update the category by adding a good description name and a good explanatory description of the category.
+        </p>
+    </div>
+
+    <form action="" method="post" class="field-data-container">
+        {% csrf_token %}
+        <div class="field-container">
+            <p class="field-label">Category</p>
+            {{form.category}}
+        </div>
+        <div class="field-container">
+            <p class="field-label">Description</p>
+            {{form.description}}
+        </div>
+
+        <div class="btn-container">
+            <input type="submit" value="Update Category" class="btn btn-update">
+            <a href="{% url 'view-category' category.id %}" class="btn btn-cancel" >No, Cancel</a>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}
+
+
+{% block script %}
+
+<script>
+    let category_cls_lst = document.getElementById('id_category').classList
+    let desc_cls_lst = document.getElementById('id_description').classList
+
+    category_cls_lst.add('field', 'form-field-input');
+    desc_cls_lst.add('field', 'form-field-input', 'desc-text');
+</script>
+    
+{% endblock script %}

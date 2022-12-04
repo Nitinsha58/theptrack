@@ -1,0 +1,312 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-family: "Nunito", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #fff;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header here */
+
+header {
+  width: 100%;
+  background-color: white;
+  overflow: auto;
+  box-shadow: rgba(0, 0, 0, 0.144) 3px 3px 22px;
+  position: sticky;
+  top: 0;
+  z-index: 535563;
+}
+
+.header-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 4rem;
+  max-width: none;
+}
+
+.link {
+  text-decoration: none;
+  font-style: none;
+  color: black;
+  font-size: 1.2em;
+  overflow: hidden;
+}
+
+.header-logo {
+  font-weight: 600;
+  font-size: 2em;
+}
+
+ul {
+  list-style-type: none;
+}
+
+/* Notification here */
+
+.notify-container {
+  width: calc(100%-8rem);
+  padding: 0.5rem 4rem 0 4rem;
+}
+
+.alert {
+  margin-top: 0.5rem;
+  margin-right: 0;
+  margin-left: auto;
+  max-width: 100%;
+  width: fit-content;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.alert-type {
+  font-weight: 600;
+}
+
+.msg {
+  margin: 5px 7px;
+}
+
+.danger-alert {
+  border: solid 2px #ff3547;
+}
+.success-alert {
+  border: solid 2px #00c851;
+}
+.warning-alert {
+  border: solid 2px #ffbb33;
+}
+
+.info-alert {
+  border: solid 2px #33b5e5;
+}
+
+/* Main Section */
+
+.main-section {
+  display: flex;
+  margin: 1rem 4rem;
+}
+
+/* Back arrow */
+
+.back-arrow-container img {
+  margin-top: 10px;
+  margin-bottom: -10px;
+  width: 25px;
+  margin-left: 5px;
+  transform: rotate(180deg);
+  cursor: pointer;
+}
+
+/* Content Section */
+
+.content-section {
+  width: 50%;
+}
+
+.main-heading {
+  font-size: 40px;
+  font-weight: 500;
+  margin-top: 15px;
+}
+
+.main-heading-desc {
+  font-size: 17px;
+  color: rgba(0, 0, 0, 0.774);
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+.danger-text {
+  color: #dc3545;
+}
+
+.field-data-container {
+  margin: 30px 0;
+}
+
+.field-label {
+  margin: 5px 0;
+  font-weight: 600;
+}
+
+.field-container {
+  margin: 15px 0;
+}
+
+.field {
+  border: 2px solid black;
+  padding: 7px;
+  font-weight: 500;
+}
+
+.desc-text {
+  white-space: pre-wrap;
+  min-height: 100px;
+  max-height: fit-content;
+}
+
+.help-text {
+  margin: .3rem 0;
+  color: rgb(0, 0, 0);
+  opacity: .9;
+  display: none;
+}
+
+.li-a {
+  display: block;
+}
+
+.btn {
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.6em 1.1em;
+  max-width: fit-content;
+  min-width: 7.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-sizing: content-box;
+
+  box-shadow: #00000021 5px 5px 24px;
+}
+
+.btn-container {
+  margin: 15px 0;
+  display: flex;
+}
+
+.btn-container a:nth-child(1) {
+  margin-right: 10px;
+}
+.btn-container a:nth-child(2) {
+  margin-left: 10px;
+}
+
+.btn-update {
+  background-color: #ffc107;
+  color: black;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-cancel {
+  color: black;
+  background-color: white;
+}
+
+input[type=submit] {
+  border: none;
+  display: flex;
+}
+
+/* illustration section */
+
+.illustration-section {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  top: 6rem;
+}
+
+.illustration-section img {
+  margin-top: 5em;
+}
+
+@media only screen and (max-width: 374px) {
+  .alert {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .main-section {
+    margin-top: 5px;
+    font-size: 14px;
+  }
+
+  .btn-container {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+  }
+
+  .btn-container > .btn {
+    max-width: 100%;
+    padding: 0.6em 0;
+    margin: 5px 0;
+  }
+
+  .btn-container a:nth-child(1) {
+    margin-right: 0;
+  }
+  .btn-container a:nth-child(2) {
+    margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .notify-container {
+    padding: 1rem 1rem 0 1rem;
+  }
+
+  .content-section {
+    width: 100%;
+  }
+
+  .illustration-section {
+    display: none;
+  }
+
+  .header-main {
+    margin: 1rem 1rem;
+}
+
+  .main-section {
+    margin: 0rem 1rem;
+  }
+
+  .btn-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .btn-container > a {
+    margin: 0;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 800px) {
+  .content-section {
+    width: 100%;
+  }
+
+  .illustration-section {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 800px) and (max-width: 992px) {
+  .content-section {
+    width: 90%;
+  }
+
+  .illustration-section {
+    display: none;
+  }
+}

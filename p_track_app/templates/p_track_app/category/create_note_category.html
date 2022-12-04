@@ -1,0 +1,75 @@
+{% extends "p_track_app/base.html" %}
+{% load static %}
+
+{% block title %}
+    Create new Category
+{% endblock title %}
+
+{% block style %}
+
+<style>
+/* form style */
+.form-field-input {
+    margin: 0;
+    width: calc(100% - 20px);
+}
+
+.btn-submit {
+    border: none;
+}
+
+</style>
+
+{% endblock style %}
+
+{% block content %}
+<a href="{% url 'home' %}" class="back-arrow-container link">
+    <img src="{% static 'images/arrow.svg' %}" alt="back arrow image.">
+</a>
+
+<div class="category-section">
+
+    <div class="info-section">
+        <p class="main-heading">
+            Create Note Category
+        </p>
+        <p class="main-heading-desc">
+            Create a category that matches with the type of notes you want to add in this category with good name and description.
+        </p>
+    </div>
+
+    <form action="" method="post" class="field-data-container" id="form-id">
+        {% csrf_token %}
+        <div class="field-container">
+            <p class="field-label">Category</p>
+            {{form.category}}
+            {{form.category.erros}}
+        </div>
+
+        <div class="field-container">
+            <p class="field-label">Description</p>
+            {{form.description}}
+        </div>
+
+
+        <div class="btn-container">
+            <input type="submit" value="Create Category" class="btn btn-update">
+            <a href="{% url 'home' %}" class="btn btn-cancel" >Cancel</a>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}
+
+
+{% block script %}
+<script>
+
+    let category_cls_lst = document.getElementById('id_category').classList
+    let desc_cls_lst = document.getElementById('id_description').classList
+
+    category_cls_lst.add('field', 'form-field-input');
+    desc_cls_lst.add('field', 'form-field-input', 'desc-text');
+</script>
+    
+{% endblock script %}

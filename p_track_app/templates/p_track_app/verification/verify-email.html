@@ -1,0 +1,124 @@
+{% extends "p_track_app/base.html" %}
+{% load static %}
+
+{% block title %}
+    Login to Ptrack
+{% endblock title %}
+
+{% block style %}
+
+<style>
+/* form style */
+.form-field-input {
+    margin: 0;
+    border: black 1px solid;
+    width: calc(100% - 20px);
+}
+
+.btn-submit {
+    border: none;
+}
+
+.account-link {
+    text-decoration: none;
+    color: #0044ff;
+}
+
+#show-pass{
+    cursor: pointer;
+}
+.show-pass{
+    cursor: pointer;
+}
+
+#resend-email {
+    display: inline-block;
+    color: black;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 374px){
+    .main-heading {
+        font-size: xx-large !important;
+    }
+}
+</style>
+
+{% endblock style %}
+
+{% block content %}
+
+<a href="{% url 'home' %}" class="back-arrow-container link">
+    <img src="{% static 'images/arrow.svg' %}" alt="back arrow image.">
+</a>
+
+<div class="category-section">
+
+    <div class="info-section">
+        <p class="main-heading">
+            Verify your Email.
+        </p>
+        <p class="main-heading-desc">
+            Enter the verification code below sent to your email address {{request.user.email}}.
+        </p>
+    </div>
+
+    <form action="{% url 'verify' %}" method="post" class="field-data-container" id="form-id">
+        {% csrf_token %}
+        <div class="field-container">
+            <p for="verification-code" class="field-label">Verification code</p>
+            <input id="verification-code" type="text" maxlength="6" class="field form-field-input" name="verification-code" required>
+            <p class = 'help-text'>Verification code is only valid for 5 minutes.</p>
+        </div>
+        <div class="btn-container">
+            <input class="btn btn-update" type="submit" value="Verify Email">
+        </div>
+    </form>
+
+    
+    <form action="{% url 'verify-email' %}" method="POST">
+        {% csrf_token %}
+        <p>Didn't receive an email? <input type="submit" id="resend-email" value="Resend Email"></p>
+        <p id="active-para">Resend Verification code in: <b id="time-counter">30</b></p>
+    </form>
+    
+</div>
+
+{% endblock content %}
+
+
+{% block script %}
+<script>
+    const delay_time = 30
+ 
+    function timeout_func(){
+        setTimeout(()=>{
+        }, 1000)
+    }
+    
+    function disable_btn(time, ) {
+        send_email_btn = document.querySelector('#resend-email');
+        para_counter = Number(document.querySelector('#time-counter').innerHTML)
+    
+        var interval;
+        interval = setInterval(updateP, 1000);
+    
+        send_email_btn.disabled = true
+        send_email_btn.style.color = ''
+        function updateP(){
+            if ( time > 0){
+                time -= 1
+                document.querySelector('#time-counter').innerHTML = time
+            }else if (time <= 0) {
+                document.querySelector('#active-para').style.display = 'none'
+                send_email_btn.disabled = false
+                clearInterval(interval)
+    
+            }
+        }
+    }
+    
+    disable_btn(delay_time)
+</script>    
+{% endblock script %}

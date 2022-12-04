@@ -1,0 +1,77 @@
+{% extends "p_track_app/base.html" %}
+{% load static %}
+
+{% block title %}
+    Delete Note
+{% endblock title %}
+
+{% block style %}
+
+<style>
+/* form style */
+.form-field-input {
+    margin: 0;
+    border: black 1px solid;
+    width: calc(100% - 20px);
+}
+
+.btn-submit {
+    border: none;
+}
+
+@media only screen and (max-width: 374px){
+    .main-heading {
+        font-size: x-large !important;
+    }
+}
+
+</style>
+
+{% endblock style %}
+
+{% block content %}
+<a href="{% url 'view-note' note.id %}" class="back-arrow-container link">
+    <img src="{% static 'images/arrow.svg' %}" alt="back arrow image.">
+</a>
+
+<div class="category-section">
+
+    <div class="info-section">
+        <p class="main-heading">
+            Do  you want to Delete this Note?
+        </p>
+        <p class="main-heading-desc danger-text">
+            Deleting this note will permanently remove this note from the below category.
+        </p>
+    </div>
+
+    <form action="" method="post" id="form-id">
+        {% csrf_token %}
+        <div class="field-data-container">
+            <div class="field-container">
+                <p class="field-label">Category</p>
+                <div class="field">{{note.category}}</div>
+            </div>
+            <div class="field-container">
+                <p class="field-label">Note Title</p>
+                <div class="field">{{note.title}}</div>
+            </div>
+            <div class="field-container">
+                <p class="field-label">Description</p>
+                <pre class="field desc-text">{{note.content}}</pre>
+            </div>
+
+            <div class="btn-container">
+                <input type="submit" value="Yes, Delete" class="btn btn-delete">
+                <a href="{% url 'view-note' note.id %}" class="btn btn-cancel">No, Cancel</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}
+
+
+{% block script %}
+    
+{% endblock script %}

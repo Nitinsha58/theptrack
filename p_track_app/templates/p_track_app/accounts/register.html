@@ -1,0 +1,156 @@
+{% extends "p_track_app/base.html" %}
+{% load static %}
+
+{% block title %}
+    Register to Ptrack
+{% endblock title %}
+
+{% block style %}
+
+<style>
+/* form style */
+.form-field-input {
+    margin: 0;
+    border: black 1px solid;
+    width: calc(100% - 20px);
+}
+
+.account-link {
+    text-decoration: none;
+    color: #0044ff;
+}
+
+.btn-submit {
+    border: none;
+}
+
+#show-pass{
+    cursor: pointer;
+}
+.show-pass{
+    cursor: pointer;
+}
+
+.error-msg, li {
+    color: red;
+}
+
+
+@media only screen and (max-width: 374px){
+    .main-heading {
+        font-size: xx-large !important;
+    }
+}
+</style>
+
+{% endblock style %}
+
+{% block content %}
+
+
+<div class="category-section">
+
+    <div class="info-section">
+        <p class="main-heading">
+            Hey, Signup to P<b><sub>track</sub></b>
+        </p>
+        <p class="main-heading-desc">
+            Sign up to Ptrack, and start creating notes.
+        </p>
+    </div>
+
+    <form action="" method="post" class="field-data-container" id="form-id">
+        {% csrf_token %}
+        {{form.non_field_errors}}
+        <div class="field-container">
+            <p class="field-label">Username</p>
+            <p class="error-msg">{{ form.username.errors }}</p> 
+            {{ form.username }}
+            <p id="help-text-username" class="help-text">{{ form.username.help_text }}</p>  
+        </div>
+
+        <div class="field-container">
+            <p class="field-label">Email address</p>
+            <div class="error-msg">{{ form.email.errors }}</div>
+            {{ form.email }}
+            <p id="help-text-email" class="help-text">{{ form.email.help_text }}</p>  
+        </div>
+
+        <div class="field-container">
+            <p class="field-label">Password</p>
+            <div class="error-msg">{{ form.password1.errors }}</div>
+            {{ form.password1 }}
+            <p id="help-text-pass1" class="help-text">{{ form.password1.help_text }}</p>  
+        </div>
+
+        <div class="field-container">
+            <p class="field-label">Confirm Passwrod</p>
+            <div class="error-msg">{{ form.password2.errors }}</div>
+            {{ form.password2 }}
+            <p id="help-text-pass2" class="help-text">{{ form.password2.help_text }}</p>  
+        </div>
+
+        <input type="checkbox" name="" id="show-pass">
+        <label class="show-pass field-label" for="show-pass">Show password</label>
+        <p>Have an account? <a href="{% url 'login' %}" class="account-link">Login to Ptrack!</a></p>
+
+        <div class="btn-container">
+            <input class="btn btn-update" type="submit" value="Signup to Ptrack">
+        </div>
+
+    </form>
+</div>
+
+{% endblock content %}
+
+
+{% block script %}
+
+<script>
+
+    document.getElementById('show-pass').addEventListener('click', ()=>{
+        var checkBox = document.getElementById('show-pass')
+        var pass1 = document.getElementById('id_password1')
+        var pass2 = document.getElementById('id_password2')
+        if (checkBox.checked == true) {
+            pass1.attributes.type.value = "text"
+            pass2.attributes.type.value = "text"
+        }else {
+            pass1.attributes.type.value = "password"
+            pass2.attributes.type.value = "password"
+        }
+    })
+
+    let username = document.getElementById('id_username')
+    let email = document.getElementById('id_email')
+    let pass1 = document.getElementById('id_password1')
+    let pass2 = document.getElementById('id_password2')
+
+    username.classList.add('field', 'form-field-input');
+    email.classList.add('field', 'form-field-input');
+    pass1.classList.add('field', 'form-field-input');
+    pass2.classList.add('field', 'form-field-input');
+    
+    help_txt_username = document.getElementById('help-text-username')
+    help_txt_email = document.getElementById('help-text-email')
+    help_txt_pass1 = document.getElementById('help-text-pass1')
+    help_txt_pass2 = document.getElementById('help-text-pass2')
+    
+    function show_help_text(input_field, help_text) {
+        input_field.addEventListener('focusin', (event) => {
+            help_text.style.display = 'block';
+        });
+        
+        input_field.addEventListener('focusout', (event) => {
+            help_text.style.display = 'none';
+          });
+    }
+
+    show_help_text(username, help_txt_username);
+    show_help_text(email, help_txt_email);
+    show_help_text(pass1, help_txt_pass1);
+    show_help_text(pass2, help_txt_pass2);
+
+</script>
+    
+{% endblock script %}

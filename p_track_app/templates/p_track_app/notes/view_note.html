@@ -1,0 +1,85 @@
+{% extends "p_track_app/base.html" %}
+{% load static %}
+
+{% block title %}
+    View Note
+{% endblock title %}
+
+{% block style %}
+
+<style>
+/* form style */
+.form-field-input {
+    margin: 0;
+    border: black 1px solid;
+    width: calc(100% - 20px);
+}
+
+.btn-submit {
+    border: none;
+}
+
+.link-field {
+    white-space: pre-wrap;    
+    white-space: -moz-pre-wrap; 
+    white-space: -pre-wrap;     
+    white-space: -o-pre-wrap;    
+    word-wrap: break-word;
+}
+
+</style>
+
+{% endblock style %}
+
+{% block content %}
+<a href="{% url 'view-category' note.category.id %}" class="back-arrow-container link">
+    <img src="{% static 'images/arrow.svg' %}" alt="back arrow image.">
+</a>
+
+<div class="category-section">
+
+    <div class="info-section">
+        <p class="main-heading">
+            View Note
+        </p>
+        <p class="main-heading-desc">
+            View your individiaul note here with the category give below.
+        </p>
+    </div>
+
+    <div class="field-data-container">
+        <div class="field-container">
+            <p class="field-label">Category</p>
+            <a href="{% url 'view-category' note.category.id %}" class="field link li-a">{{note.category}}</a>
+        </div>
+        <div class="field-container">
+            <p class="field-label">Title</p>
+            <div class="field">{{note.title}}</div>
+        </div>
+        <div class="field-container">
+            <p class="field-label">Link</p>
+            {% if note.link %}
+            <div class="field"><a class="link link-field" href="{{note.link}}" target="_blank">{{note.link}}</a></div>
+            {% else %}
+            <div class="field link-field">{{note.link}}</div>
+            {% endif %}
+
+        </div>
+        <div class="field-container">
+            <p class="field-label">Description</p>
+            <pre class="field desc-text">{{note.content}}</pre>
+        </div>
+
+        <div class="btn-container">
+            <a href="{% url 'update-note' note.id %}" class="btn btn-update">Update Note</a>
+            <a href="{% url 'delete-note' note.id %}" class="btn btn-delete">Delete Note</a>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+
+{% block script %}
+    
+{% endblock script %}
