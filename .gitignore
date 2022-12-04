@@ -8,3 +8,4 @@ media
 staticfiles/
 *.dump
 *.exe
+.env
